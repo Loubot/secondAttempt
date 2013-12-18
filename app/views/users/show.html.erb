@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= render 'shared/messages' %>
 <p>
   <b>Name:</b>
   <%= @user.name %>
@@ -9,10 +9,11 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-
-<ol>
-	<%= render @microposts %>
-</ol>
+<% if @microposts.any? %>
+	<ol class="microposts">
+		<%= render @microposts %>
+	</ol>
+<% end %>
 
 <%= form_for(@micropost) do |f| %>
 	<div>

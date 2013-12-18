@@ -11,6 +11,8 @@ gem 'better_errors'
 
 gem 'annotate'
 
+gem 'bootstrap-sass', '2.1'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

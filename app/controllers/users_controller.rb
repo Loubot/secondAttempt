@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    save_user(@user)
     @microposts = @user.microposts
     @micropost = @user.microposts.build(params[:content])
 
