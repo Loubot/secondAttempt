@@ -13,6 +13,9 @@ gem 'annotate'
 
 gem 'bootstrap-sass', '2.1'
 
+gem "jquery-ui-rails"
+
+gem "binding_of_caller"
 
 # Gems used only for assets and not required
 # in production environments by default.

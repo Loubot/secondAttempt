@@ -1,3 +1,4 @@
-<li>
-  <span class="content"><%= micropost.content %></span>  
-</li>
+<%= div_for micropost do %>
+	<%= micropost.content %>
+	<%= link_to "delete", micropost, method: :delete,data: { confirm: "You sure?" },remote: true, title: micropost.content %> 
+<% end %>

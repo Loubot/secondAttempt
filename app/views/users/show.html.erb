@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 <%= render 'shared/messages' %>
 <p>
   <b>Name:</b>
@@ -9,15 +9,18 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
+<div id="microposts">
 <% if @microposts.any? %>
-	<ol class="microposts">
-		<%= render @microposts %>
-	</ol>
-<% end %>
+	
 
-<%= form_for(@micropost) do |f| %>
-	<div>
-		<%= f.text_area :content %>
+		<%= render @microposts %>	
+<% end %>
+</div>
+
+<%= form_for(@user.microposts.build, remote: true) do |f| %>
+	<div class="text_area">
+		<%= f.text_area(:content, cols: 20, rows:10) %>
+
 	</div>
 	<%= f.submit 'Post' %>
 <% end %>

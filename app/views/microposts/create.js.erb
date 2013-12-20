@@ -1,0 +1,5 @@
+$('.alert').css('visibility', 'hidden');
+$('#micropost_content').val('');
+$('#microposts').append('<%= escape_javascript(render @micropost) %>');
+$('#<%= dom_id(@micropost) %>').effect('highlight', { color:'green' });
+$('#microposts').refresh();

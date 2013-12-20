@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def save_user(user)
 		cookies.permanent[:remember_token]= user.remember_token
-		flash[:success] = user.remember_token
+		
 	end
 
 	def current_user

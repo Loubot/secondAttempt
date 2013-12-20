@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+
+  def find_user
+    if User.find_by_id(params[:id])!= nil
+      @user = User.find_by_id(params[:id])
+    end
+  end
+
   def index
     @users = User.all
 
@@ -13,14 +21,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-    save_user(@user)
-    @microposts = @user.microposts
-    @micropost = @user.microposts.build(params[:content])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if @user != nil
+      save_user(@user)
+      @microposts = @user.microposts      
+    else
+      redirect_to root_path
     end
   end
 
@@ -37,30 +42,27 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user 
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:success] = 'User created'
+      redirect_to @user
+    else
+      flash[:error] = 'Ballbag'
+      render 'new'
     end
+    
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
+    @user 
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user 
     @user.destroy
 
     respond_to do |format|
