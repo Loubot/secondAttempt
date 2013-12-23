@@ -4,17 +4,10 @@ class MicropostsController < ApplicationController
 	def create
 		@micropost = current_user.microposts.build(params[:micropost])
 
+		@micropost.save
 		respond_to do |format|
-			if @micropost.save
-				format.html{
-					flash[:success] = 'Micropost created'
-					redirect_to current_user }
-				
-			else
-				format.html {flash[:error] = "Micropost format invalid"
-				redirect_to current_user}
-			end
 			format.js
+			format.json
 		end
 	end
 
