@@ -6,10 +6,10 @@ $(document).ready ->
 		micropost_content = $('#custom_phase2 #micropost_content').val()
 		
 		$.ajax
-			type: 'put'
+			type: 'post'
 			url: url
-			data: { micropost: micropost_content } 
+			data: { micropost: { content: micropost_content } }
 			dataType: 'json'
 			success: (json) ->
-				alert 'b'
-				$('#custom_phase2').fadeOut()
+				alert 'a'
+				window.location.reload()
