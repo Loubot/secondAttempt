@@ -8,19 +8,34 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  remember_token :string(255)
+#  password_hash  :string(255)
+#  password_salt  :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name
+  attr_accessible :email, :name, :password
+
+  attr_accessor :password
+
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  validates_presence_of :email
+  validates_uniqueness_of :email
+
   has_many :microposts
 
-  before_save :create_remember_token
+  before_save :create_remember_token, :encrypt_password
 
   def create_remember_token
   	self.remember_token = SecureRandom.urlsafe_base64
   end
 
-  def feed 
-  	@microposts = Microposts.where('user_id = ?', id)
+  def encrypt_password
+  	if password.present?
+  		self.password_salt = BCrypt::Engine.generate_salt
+  		self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+  	end
   end
+
+  
 end

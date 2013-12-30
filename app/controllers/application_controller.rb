@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   def save_user(user)
 		cookies.permanent[:remember_token]= user.remember_token
 		
-	end
+  end
 
-	def current_user
+  def current_user
 		@current_user = User.find_by_remember_token(cookies[:remember_token])
-	end
+  end
 end
