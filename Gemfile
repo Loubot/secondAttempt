@@ -5,6 +5,8 @@ gem 'rails', '3.2.15'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
 gem 'sqlite3'
 
 gem 'better_errors'
