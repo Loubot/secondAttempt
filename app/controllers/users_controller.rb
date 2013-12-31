@@ -2,21 +2,21 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   before_filter :find_user, :only => [:show, :edit, :update, :destroy,:index]
+  before_filter :check_login, :only => [:new]
 
   def find_user
     @user = User.find_by_id(params[:id])
     
   end
 
-  def verify_user
-    if @user == current_user
-      @user 
-    else
-      @user = nil
-      redirect_to log_in_path
+  def check_login
+    if logged_in != nil
+      @user = current_user
+      redirect_to @user
     end
-  end
+  end 
 
+  
   def index
     
     @users = User.all
@@ -37,10 +37,10 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
+      
     end
   end
 

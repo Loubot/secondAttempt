@@ -13,5 +13,5 @@
 	<p class="button"><%= submit_tag "Log in" %></p>
 <% end %>
 
-<p class="button"><%= link_to new_user_path %></p>
+<%= button_to 'New user' ,new_user_path, :method => 'get' %>
 

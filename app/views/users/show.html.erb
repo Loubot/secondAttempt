@@ -1,5 +1,3 @@
-
-<%= render 'shared/messages' %>
 <p>
   <b>Name:</b>
   <%= @user.name %>
@@ -17,7 +15,7 @@
 <% end %>
 </div>
 
-<%= form_for(@user.microposts.build, remote: true) do |f| %>
+<%= form_for(@user.microposts.build, remote: :true) do |f| %>
 	<div class="text_area">
 		<%= f.text_area(:content, cols: 20, rows:10) %>
 
