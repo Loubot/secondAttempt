@@ -1,12 +1,13 @@
 SecondAttempt::Application.routes.draw do
   get "log_in" => "sessions#new", :as => 'log_in'
   get 'log_out' => "sessions#destroy", :as => 'log_out'
+  post 'log_in' => 'sessions#create', :as => 'log_in'
 
   resources :users
   resources :microposts, only: [:create, :destroy]
-  resources :sessions
+  
 
-  root :to => 'users#index'
+  root :to => 'sessions#new'
 
 
   # The priority is based upon order of creation:

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find_by_id(params[:id])
+    
   end
 
   def verify_user
@@ -29,13 +30,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if @user == current_user
-      
-      @microposts = @user.microposts      
-    else
-      flash[:notice] = 'Not logged in'
-      redirect_to log_in_path
-    end
+    @microposts = @user.microposts
   end
 
   # GET /users/new

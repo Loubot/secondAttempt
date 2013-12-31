@@ -11,5 +11,4 @@ $(document).ready ->
 			data: { micropost: { content: micropost_content } }
 			dataType: 'json'
 			success: (json) ->
-				alert 'a'
 				window.location.reload()
