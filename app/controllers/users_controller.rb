@@ -1,15 +1,23 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy,:index]
 
   def find_user
-    if User.find_by_id(params[:id])!= nil
-      @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id])
+  end
+
+  def verify_user
+    if @user == current_user
+      @user 
+    else
+      @user = nil
+      redirect_to log_in_path
     end
   end
 
   def index
+    
     @users = User.all
 
     respond_to do |format|
@@ -21,11 +29,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if @user != nil
-      save_user(@user)
+    if @user == current_user
+      
       @microposts = @user.microposts      
     else
-      redirect_to root_path
+      flash[:notice] = 'Not logged in'
+      redirect_to log_in_path
     end
   end
 

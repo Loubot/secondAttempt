@@ -26,6 +26,15 @@ class User < ActiveRecord::Base
 
   before_save :create_remember_token, :encrypt_password
 
+  def self.authenticate(email, password)
+  	user = User.find_by_email(email)
+  	if user && user.password_hash = BCrypt::Engine.hash_secret(password, user.password_salt)
+  		user
+  	else
+  		nil
+  	end
+  end
+
   def create_remember_token
   	self.remember_token = SecureRandom.urlsafe_base64
   end
