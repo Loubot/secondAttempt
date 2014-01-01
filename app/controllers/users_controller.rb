@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   before_filter :find_user, :only => [:show, :edit, :update, :destroy,:index]
-  before_filter :check_login, :only => [:new]
+  before_filter :check_login, :only => [:new,:show]
 
   def find_user
     @user = User.find_by_id(params[:id])
@@ -10,10 +10,7 @@ class UsersController < ApplicationController
   end
 
   def check_login
-    if logged_in != nil
-      @user = current_user
-      redirect_to @user
-    end
+    redirect_to log_in_path unless correct_user?(@user)
   end 
 
   
