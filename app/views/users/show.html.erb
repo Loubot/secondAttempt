@@ -1,37 +1,39 @@
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<section id = 'users_data'>
+	<p>
+	  <b>Name:</b>
+	  <%= @user.name %>
+	</p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<div id="microposts">
-<% if @microposts.any? %>
-	
+	<p>
+	  <b>Email:</b>
+	  <%= @user.email %>
+	</p>
+	<div id="microposts">
+	<% if @microposts.any? %>
+		
 
-		<%= render @microposts %>	
-<% end %>
-</div>
-
-<%= form_for(@user.microposts.build, remote: :true) do |f| %>
-	<div class="text_area">
-		<%= f.text_area(:content, cols: 20, rows:10) %>
-
+			<%= render @microposts %>	
+	<% end %>
 	</div>
-	<%= f.submit 'Post' %>
-<% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= render 'sessions/log_out' %>
+	<%= form_for(@user.microposts.build, remote: :true) do |f| %>
+		<div class="text_area">
+			<%= f.text_area(:content, cols: 20, rows:10) %>
 
-<div id="custom_phase2">
-	<%= form_for @user.microposts, url: microposts_path do |f| %>
-		<strong>first attempt</strong>
-		<%= f.text_field :content %>
+		</div>
 		<%= f.submit 'Post' %>
 	<% end %>
 
-</div>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', users_path %> |
+	<%= render 'sessions/log_out' %>
+
+	<div id="custom_phase2">
+		<%= form_for @user.microposts, url: microposts_path do |f| %>
+			<strong>first attempt</strong>
+			<%= f.text_field :content %>
+			<%= f.submit 'Post' %>
+		<% end %>
+
+	</div>
+</section><!--end of users_data!-->

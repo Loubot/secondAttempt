@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   before_filter :find_user, :only => [:show, :edit, :update, :destroy,:index]
-  before_filter :check_login, :only => [:new,:show]
+  before_filter :check_login, :only => [:new,:show,:destroy]
 
   def find_user
     @user = User.find_by_id(params[:id])
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def check_login
-    redirect_to log_in_path unless correct_user?(@user)
+    redirect_to log_in_path flash[:error] = 'Incorrect user' unless correct_user?(@user)
   end 
 
   
@@ -78,7 +78,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user 
     @user.destroy
 
     respond_to do |format|
