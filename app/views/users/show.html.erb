@@ -13,27 +13,43 @@
 		
 
 			<%= render @microposts %>	
-	<% end %>
+	<% end %><hr width="45%">
 	</div>
+</section><!--end of users_data!-->
 
-	<%= form_for(@user.microposts.build, remote: :true) do |f| %>
-		<div class="text_area">
-			<%= f.text_area(:content, cols: 20, rows:10) %>
+<section id = 'grouped_data'>
+	
+		<section id="posts">
+			<%= form_for(@user.microposts.build, remote: :true) do |f| %>
+				<div class="text_area">
+					<strong>JSON post</strong><br>
+					<%= f.text_area(:content, cols: 20, rows:10) %>
 
-		</div>
-		<%= f.submit 'Post' %>
-	<% end %>
+				</div>
+				<%= f.submit 'Post' %>
+			<% end %>
+			</section><!--end of posts!-->
+			<section id='show_users'>
+				<strong>All current users</strong>
+				<%= render @users %>
+			</section><!-- end of show_users!-->
+	
+</section><!-- end of grouped data !-->
 
-	<%= link_to 'Edit', edit_user_path(@user) %> |
-	<%= link_to 'Back', users_path %> |
-	<%= render 'sessions/log_out' %>
+	
 
-	<div id="custom_phase2">
+	<section id="custom_phase2">
+		<br>
 		<%= form_for @user.microposts, url: microposts_path do |f| %>
-			<strong>first attempt</strong>
+			<strong>Ajax post</strong><br>
 			<%= f.text_field :content %>
 			<%= f.submit 'Post' %>
 		<% end %>
+		<br>
+	</section>
 
-	</div>
-</section><!--end of users_data!-->
+	<section id = 'links'>
+		<%= link_to 'Edit', edit_user_path(@user) %> |
+		<%= link_to 'Back', users_path %>
+	</section>
+

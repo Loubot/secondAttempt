@@ -1,9 +1,38 @@
-@import "bootstrap";
-
+#logo{
+	font-size: 1.5em;
+	color: red;
+	&:hover{
+		color: white;
+		text-decoration: underline;
+	}
+}
 #messages{
 	width:40%;
 }
 
 #users_data{
+	margin-left:2%;
+}
+
+#posts{
+	margin-left: 2%;
+	float: left;
+	width: 30%
+}
+
+#show_users{
+	margin-left:2%;
+	float: left;
+	width: 30%;
+	strong{
+		font-size: 150%;
+	}
+}
+
+#links{
+	margin-left:2%;
+}
+
+#custom_phase2{
 	margin-left:2%;
 }
