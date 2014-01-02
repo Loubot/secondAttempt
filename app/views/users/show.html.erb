@@ -1,24 +1,13 @@
-<section id = 'users_data'>
-	<p>
-	  <b>Name:</b>
-	  <%= @user.name %>
-	</p>
-
-	<p>
-	  <b>Email:</b>
-	  <%= @user.email %>
-	</p>
-	<div id="microposts">
+<section id="users_data">
+	<strong>Name:</strong>
+	<%= @user.name %>
 	<% if @microposts.any? %>
-		
-
-			<%= render @microposts %>	
-	<% end %><hr width="45%">
-	</div>
-</section><!--end of users_data!-->
+		<%= render @microposts %>
+	<% end %>
+</section>
 
 <section id = 'grouped_data'>
-	
+	<% if correct_user?(@user) %>
 		<section id="posts">
 			<%= form_for(@user.microposts.build, remote: :true) do |f| %>
 				<div class="text_area">
@@ -29,15 +18,17 @@
 				<%= f.submit 'Post' %>
 			<% end %>
 			</section><!--end of posts!-->
-			<section id='show_users'>
-				<strong>All current users</strong>
-				<%= render @users %>
-			</section><!-- end of show_users!-->
+	<% end %>	
+	<section id='show_users'>
+		<strong>All current users</strong>
+		<%= render @users %>
+	</section><!-- end of show_users!-->
 	
 </section><!-- end of grouped data !-->
 
 	
 
+<% if correct_user?(@user) %>
 	<section id="custom_phase2">
 		<br>
 		<%= form_for @user.microposts, url: microposts_path do |f| %>
@@ -47,6 +38,7 @@
 		<% end %>
 		<br>
 	</section>
+<% end %>
 
 	<section id = 'links'>
 		<%= link_to 'Edit', edit_user_path(@user) %> |

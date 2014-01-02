@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  
+
   def new
     redirect_to current_user unless !signed_in?
   end
@@ -6,10 +9,12 @@ class SessionsController < ApplicationController
   def create
   	user = User.authenticate(params[:email],params[:password])
   	if user
-  		session[:user_id] = user.id
-  		redirect_to user, :notice => 'Logged in'
+  		sign_in(user)
+  		redirect_to user
+      flash[:success] = "Welcome #{user.name}"
   	else
   		redirect_to root_path
+      flash[:error] = "No such user"
   	end
   end
 

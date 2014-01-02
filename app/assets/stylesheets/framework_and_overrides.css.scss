@@ -37,9 +37,13 @@ main {
   background-color: #cff1fd;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  margin-top: 71px; // accommodate the navbar
   }
 section {
   @extend .row;
   margin-top: 20px;
   }
+
+.container{
+  margin-bottom: 300px;
+}
