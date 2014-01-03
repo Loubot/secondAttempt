@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  before_filter :find_user, :only => [:show, :edit, :update, :destroy,:index]
+  before_filter :find_user, :only => [:show, :edit, :update, :destroy]
   before_filter :check_login, :only => [:new,:destroy]
 
   def find_user
