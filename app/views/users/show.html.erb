@@ -1,9 +1,14 @@
 <section id="users_data">
 	<strong>Name:</strong>
 	<%= @user.name %>
-	<% if @microposts.any? %>
-		<%= render @microposts %>
-	<% end %>
+	<p>
+	<div id="microposts">
+		
+		<% if @microposts.any? %>
+		<strong>Microposts:</strong>
+			<%= render @microposts %>
+		<% end %>
+	</div>
 </section>
 
 <section id = 'grouped_data'>
