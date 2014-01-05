@@ -1,5 +1,6 @@
 <header class ="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
+    <%= link_to 'Check it', root_path, id: 'logo' %>
     <ul class="nav pull-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -7,7 +8,7 @@
             <li><a href="#"><%= link_to 'Users', users_path %></a></li>
             <li><a href="#"><%= link_to 'Log out', log_out_path %></a></li>
           </ul>
-        </li>
-    </ul>
-  </div>
+        </li><!--dropdown!-->
+    </ul><!--nav pull-right!-->
+  </div><!-- navbar-inner!-->
 </header><!-- end of navbar !-->
